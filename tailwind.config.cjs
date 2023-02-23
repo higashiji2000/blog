@@ -4,5 +4,23 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [require("daisyui")],
+  plugins: [require("@tailwindcss/typography"), require("daisyui")],
+  daisyui: {
+    themes: [
+      {
+        mytheme: {
+          primary: "#517977",
+          secondary: "#b7bda6",
+          accent: "#37CDBE",
+          neutral: "#303136",
+          "base-100": "#0A0F0F",
+          info: "#3ABFF8",
+          success: "#36D399",
+          warning: "#FBBD23",
+          error: "#F87272",
+        },
+      },
+    ],
+    darkTheme: "mytheme",
+  },
 };
