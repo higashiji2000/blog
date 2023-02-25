@@ -8,7 +8,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "lint": " eslint src/**/*.{ts,astro}",
+    "lint": "eslint src/**/*.{ts,astro}",
     "format": "prettier --check --write src/** ",
     "fix": "npm run lint && npm run format",
     "prepare": "husky install"
@@ -36,6 +36,7 @@
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-n": "^15.6.1",
     "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-unused-imports": "^2.0.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.1.2",
     "prettier": "^2.8.4",

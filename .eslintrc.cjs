@@ -4,6 +4,7 @@ module.exports = {
     es2021: true,
     node: true,
   },
+  plugins: ["unused-imports"],
   extends: ["plugin:astro/recommended", "standard-with-typescript", "prettier"],
   parserOptions: {
     ecmaVersion: "latest",
@@ -11,7 +12,19 @@ module.exports = {
     project: "./tsconfig.json",
     extraFileExtensions: [".astro"],
   },
-  rules: {},
+  rules: {
+    "no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-vars": [
+      "warn",
+      {
+        vars: "all",
+        varsIgnorePattern: "^_",
+        args: "after-used",
+        argsIgnorePattern: "^_",
+      },
+    ],
+  },
   overrides: [
     {
       // Define the configuration for `.astro` file.
