@@ -1,51 +1,41 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
 import FormattedDate from "../components/FormattedDate.astro";
+import BaseLayout from "./BaseLayout.astro";
+import Sidebar from "@components/Sidebar.astro";
 
 type Props = CollectionEntry<"blog">["data"];
 
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={description} />
-    <style>
-      .title {
-        font-size: 2em;
-        margin: 0.25em 0 0;
+<BaseLayout title={title} description={description}>
+  <article
+    class="prose w-full max-w-full grid gap-y-12 lg:gap-x-12 gap-x-0 lg:grid-cols-3"
+  >
+    {
+      heroImage && (
+        <img
+          class="object-cover w-full rounded-2xl max-h-80 col-span-3 m-0"
+          src={heroImage}
+        />
+      )
+    }
+    <div class="col-span-2">
+      <h1 class="title">{title}</h1>
+      <FormattedDate date={pubDate} />
+      {
+        updatedDate && (
+          <div class="last-updated-on">
+            Last updated on <FormattedDate date={updatedDate} />
+          </div>
+        )
       }
-      hr {
-        border-top: 1px solid #ddd;
-        margin: 1rem 0;
-      }
-      .last-updated-on {
-        font-style: italic;
-      }
-    </style>
-  </head>
-
-  <body>
-    <Header />
-    <main>
-      <article class="prose">
-        {heroImage && <img width={720} height={360} src={heroImage} alt="" />}
-        <h1 class="title">{title}</h1>
-        <FormattedDate date={pubDate} />
-        {
-          updatedDate && (
-            <div class="last-updated-on">
-              Last updated on <FormattedDate date={updatedDate} />
-            </div>
-          )
-        }
-        <hr />
+      <hr />
+      <div class="prose max-w-full">
         <slot />
-      </article>
-    </main>
-    <Footer />
-  </body>
-</html>
+      </div>
+    </div>
+    <Sidebar />
+  </article>
+</BaseLayout>
