@@ -20,6 +20,12 @@ module.exports = {
           error: "#F87272",
         },
       },
+      {
+        lofi: {
+          ...require("daisyui/src/colors/themes")["[data-theme=lofi]"],
+          primary: "#517977",
+        },
+      },
     ],
     darkTheme: "mytheme",
   },

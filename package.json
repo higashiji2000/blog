@@ -8,7 +8,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "lint": "eslint src/**/*.{ts,astro}",
+    "lint": "eslint src/**/*.{ts,astro} --fix",
     "format": "prettier --check --write src/** ",
     "fix": "npm run lint && npm run format",
     "prepare": "husky install"

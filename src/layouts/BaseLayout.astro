@@ -2,24 +2,28 @@
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import WithDrawerLayout from "./WithDrawerLayout.astro";
 
 type Props = {
   title: string;
   description: string;
 };
 
+const id = "drawer";
 const { title, description } = Astro.props;
 ---
 
-<html lang="ja">
+<html lang="ja" data-theme="lofi">
   <head>
     <BaseHead title={title} description={description} />
   </head>
   <body>
-    <Header />
-    <main class="max-w-screen-xl w-full m-auto px-8">
-      <slot />
-    </main>
-    <Footer />
+    <WithDrawerLayout id={id}>
+      <Header id={id} />
+      <main class="max-w-screen-xl w-full m-auto px-8">
+        <slot />
+      </main>
+      <Footer />
+    </WithDrawerLayout>
   </body>
 </html>

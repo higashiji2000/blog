@@ -1,25 +1,32 @@
 ---
-import HeaderLink from "./HeaderLink.astro";
-import { SITE_TITLE } from "../consts";
+import HeaderContents from "./HeaderContents.astro";
+import Logo from "./Logo.astro";
+
+type Props = {
+  id: string;
+};
+const { id } = Astro.props;
 ---
 
 <header
-  class="max-w-screen-xl w-full m-auto px-8 py-12 flex items-center justify-between"
+  class="max-w-screen-xl w-full m-auto px-8 py-8 flex items-center justify-between"
 >
-  <h2 class="text-primary text-xl lg:text-2xl font-bold">
-    <a href="/">
-      {SITE_TITLE}
-    </a>
-  </h2>
-  <nav class="flex">
-    <HeaderLink href="/blog">技術</HeaderLink>
-    <HeaderLink href="/note">雑記</HeaderLink>
-    <HeaderLink href="/about">プロフィール</HeaderLink>
-    <HeaderLink href="https://twitter.com/astrodotbuild" target="_blank">
-      Twitter
-    </HeaderLink>
-    <HeaderLink href="https://github.com/withastro/astro" target="_blank">
-      GitHub
-    </HeaderLink>
+  <Logo />
+  <nav class="flex items-center">
+    <ul class="hidden lg:flex">
+      <HeaderContents />
+    </ul>
+    <label class="btn btn-circle lg:hidden" for={id}>
+      <svg
+        class="swap-off fill-current"
+        xmlns="http://www.w3.org/2000/svg"
+        width="32"
+        height="32"
+        viewBox="0 0 512 512"
+        ><path
+          d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z"
+        ></path></svg
+      >
+    </label>
   </nav>
 </header>
