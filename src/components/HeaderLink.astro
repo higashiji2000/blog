@@ -2,12 +2,12 @@
 import type { HTMLAttributes } from "astro/types";
 export interface Props extends HTMLAttributes<"a"> {}
 
-const { href, class: className, ...props } = Astro.props;
+const { href, ...props } = Astro.props;
 
 const { pathname } = Astro.url;
 const isActive = href === pathname || href === pathname.replace(/\/$/, "");
 
-const normalStyle = "p-4 hover:text-gray-400 transition";
+const normalStyle = "p-4 hover:opacity-70 transition-opacity";
 const activeStyle = "underline" + " " + normalStyle;
 const style = isActive ? activeStyle : normalStyle;
 ---
