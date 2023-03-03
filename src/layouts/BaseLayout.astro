@@ -20,8 +20,9 @@ const { title, description } = Astro.props;
   </head>
   <body>
     <WithDrawerLayout id={id}>
+      <div class="h-20 lg:hidden"></div>
       <Header id={id} />
-      <main class="max-w-screen-xl w-full m-auto px-8">
+      <main class="max-w-screen-xl w-full m-auto px-4 lg:px-8">
         <slot />
       </main>
       <Footer />

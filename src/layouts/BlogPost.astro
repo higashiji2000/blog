@@ -3,6 +3,7 @@ import type { CollectionEntry } from "astro:content";
 import FormattedDate from "../components/FormattedDate.astro";
 import BaseLayout from "./BaseLayout.astro";
 import Sidebar from "@components/Sidebar.astro";
+import ContentLayout from "./ContentLayout.astro";
 
 type Props = CollectionEntry<"blog">["data"];
 
@@ -11,7 +12,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 
 <BaseLayout title={title} description={description}>
   <article
-    class="prose w-full max-w-full grid gap-y-12 lg:gap-x-12 gap-x-0 grid-cols-1 lg:grid-cols-3"
+    class="prose w-full max-w-full grid gap-y-8 lg:gap-x-8 gap-x-0 grid-cols-1 lg:grid-cols-3"
   >
     {
       heroImage && (
@@ -22,19 +23,21 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
       )
     }
     <div class="col-span-2">
-      <h1 class="title">{title}</h1>
-      <FormattedDate date={pubDate} />
-      {
-        updatedDate && (
-          <div class="last-updated-on">
-            Last updated on <FormattedDate date={updatedDate} />
-          </div>
-        )
-      }
-      <hr />
-      <div class="prose max-w-full">
-        <slot />
-      </div>
+      <ContentLayout>
+        <h1 class="title">{title}</h1>
+        <FormattedDate date={pubDate} />
+        {
+          updatedDate && (
+            <div class="last-updated-on">
+              Last updated on <FormattedDate date={updatedDate} />
+            </div>
+          )
+        }
+        <hr />
+        <div class="prose max-w-full">
+          <slot />
+        </div>
+      </ContentLayout>
     </div>
     <Sidebar />
   </article>

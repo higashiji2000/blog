@@ -9,24 +9,30 @@ const { id } = Astro.props;
 ---
 
 <header
-  class="max-w-screen-xl w-full m-auto px-8 py-8 flex items-center justify-between"
+  class="max-w-screen-xl w-full m-auto pb-4 lg:py-4 lg:px-8 fixed top-0 left-0 right-0 lg:static"
 >
-  <Logo />
-  <nav class="flex items-center">
-    <ul class="hidden lg:flex">
-      <HeaderContents />
-    </ul>
-    <label class="btn btn-circle lg:hidden" for={id}>
-      <svg
-        class="swap-off fill-current"
-        xmlns="http://www.w3.org/2000/svg"
-        width="32"
-        height="32"
-        viewBox="0 0 512 512"
-        ><path
-          d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z"
-        ></path></svg
-      >
-    </label>
-  </nav>
+  <div
+    class="rounded-none lg:rounded-2xl px-8 lg:px-6 bg-opacity-80 lg:bg-white bg-base-100 backdrop-blur-sm lg:drop-shadow-none"
+  >
+    <div class="flex items-center justify-between py-2 lg:py-6">
+      <Logo />
+      <nav class="flex items-center">
+        <ul class="hidden lg:flex">
+          <HeaderContents />
+        </ul>
+        <label class="btn btn-ghost lg:hidden" for={id}>
+          <svg
+            class="swap-off fill-black"
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 512 512"
+            ><path
+              d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z"
+            ></path></svg
+          >
+        </label>
+      </nav>
+    </div>
+  </div>
 </header>
