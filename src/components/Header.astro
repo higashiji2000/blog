@@ -1,7 +1,6 @@
 ---
 import HeaderContents from "./HeaderContents.astro";
 import Logo from "./Logo.astro";
-import ThemeIcon from "./ThemeIcon.astro";
 
 type Props = {
   id: string;
@@ -17,7 +16,6 @@ const { id } = Astro.props;
     <ul class="hidden lg:flex">
       <HeaderContents />
     </ul>
-    <ThemeIcon />
     <label class="btn btn-circle lg:hidden" for={id}>
       <svg
         class="swap-off fill-current"

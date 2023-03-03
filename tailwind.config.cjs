@@ -13,17 +13,11 @@ module.exports = {
           secondary: "#b7bda6",
           accent: "#37CDBE",
           neutral: "#303136",
-          "base-100": "#151515",
+          "base-100": "#f8f8f8",
           info: "#3ABFF8",
           success: "#36D399",
           warning: "#FBBD23",
           error: "#F87272",
-        },
-      },
-      {
-        lofi: {
-          ...require("daisyui/src/colors/themes")["[data-theme=lofi]"],
-          primary: "#517977",
         },
       },
     ],
