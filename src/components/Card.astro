@@ -1,0 +1,35 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+type Props = {
+  frontmatter: CollectionEntry<"blog">["data"];
+  url: string;
+};
+const { frontmatter, url } = Astro.props;
+---
+
+<article class="group">
+  <a class="flex items-center gap-8" href={url}>
+    <figure class="rounded-2xl w-60 hidden lg:block overflow-hidden">
+      <img
+        class="group-hover:scale-110 transition duration-200 grayscale group-hover:grayscale-0"
+        src={frontmatter.heroImage}
+      />
+    </figure>
+    <div
+      class="flex flex-col gap-2 flex-1 group-hover:opacity-70 transition duration-200"
+    >
+      <h2 class="font-bold text-xl">{frontmatter.title}</h2>
+      <time>{frontmatter.pubDate.toLocaleDateString()}</time>
+      <ul class="flex gap-2">
+        {
+          frontmatter.tags.map((tag) => (
+            <li class="before:content-['•'] before:font-bold before:text-primary">
+              {tag}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </a>
+</article>

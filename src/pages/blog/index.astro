@@ -7,6 +7,9 @@ import { getCollection } from "astro:content";
 import FormattedDate from "../../components/FormattedDate.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import ContentLayout from "@layouts/ContentLayout.astro";
+import Card from "@components/Card.astro";
+import HorizontalRule from "@components/HorizontalRule.astro";
+import Title from "@components/Title.astro";
 
 const posts = (await getCollection("blog")).sort(
   (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
@@ -15,15 +18,20 @@ const posts = (await getCollection("blog")).sort(
 
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
   <ContentLayout>
-    <ul>
-      {
-        posts.map((post) => (
-          <li>
-            <FormattedDate date={post.data.pubDate} />
-            <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
-          </li>
-        ))
-      }
-    </ul>
+    <div class="grid gap-4">
+      <Title title="tech" />
+      <ul class="grid gap-4">
+        {
+          posts.map((post) => (
+            <>
+              <HorizontalRule />
+              <li>
+                <Card frontmatter={post.data} url={`blog/${post.slug}`} />
+              </li>
+            </>
+          ))
+        }
+      </ul>
+    </div>
   </ContentLayout>
 </BaseLayout>
