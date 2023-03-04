@@ -1,5 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import Tag from "./Tag.astro";
 
 type Props = {
   frontmatter: CollectionEntry<"blog">["data"];
@@ -22,13 +23,7 @@ const { frontmatter, url } = Astro.props;
       <h2 class="font-bold text-xl">{frontmatter.title}</h2>
       <time>{frontmatter.pubDate.toLocaleDateString()}</time>
       <ul class="flex gap-2">
-        {
-          frontmatter.tags.map((tag) => (
-            <li class="before:content-['•'] before:font-bold before:text-primary">
-              {tag}
-            </li>
-          ))
-        }
+        {frontmatter.tags.map((tag) => <Tag name={tag} />)}
       </ul>
     </div>
   </a>

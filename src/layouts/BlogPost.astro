@@ -4,15 +4,21 @@ import FormattedDate from "../components/FormattedDate.astro";
 import BaseLayout from "./BaseLayout.astro";
 import Sidebar from "@components/Sidebar.astro";
 import ContentLayout from "./ContentLayout.astro";
+import type { MarkdownHeading } from "astro";
+import Title from "@components/Title.astro";
+import Tag from "@components/Tag.astro";
 
-type Props = CollectionEntry<"blog">["data"];
+type Props = CollectionEntry<"blog">["data"] & {
+  headings: MarkdownHeading[];
+};
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, headings, tags } =
+  Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
   <article
-    class="prose w-full max-w-full grid gap-y-8 lg:gap-x-8 gap-x-0 grid-cols-1 lg:grid-cols-3"
+    class="w-full max-w-full grid gap-y-8 lg:gap-x-8 gap-x-0 grid-cols-1 lg:grid-cols-3"
   >
     {
       heroImage && (
@@ -24,21 +30,30 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
     }
     <div class="col-span-2">
       <ContentLayout>
-        <h1 class="title">{title}</h1>
-        <FormattedDate date={pubDate} />
-        {
-          updatedDate && (
-            <div class="last-updated-on">
-              Last updated on <FormattedDate date={updatedDate} />
-            </div>
-          )
-        }
-        <hr />
+        <section class="grid gap-4">
+          <Title title={title} />
+          <ul class="flex gap-4 text-neutral-500">
+            <li>
+              公開：<FormattedDate date={pubDate} />
+            </li>
+            {
+              updatedDate && (
+                <li>
+                  更新： <FormattedDate date={updatedDate} />
+                </li>
+              )
+            }
+          </ul>
+          <ul class="flex gap-4">
+            {tags.map((tag) => <Tag name={tag} />)}
+          </ul>
+        </section>
+        <hr class="my-6" />
         <div class="prose max-w-full">
           <slot />
         </div>
       </ContentLayout>
     </div>
-    <Sidebar />
+    <Sidebar headings={headings} />
   </article>
 </BaseLayout>

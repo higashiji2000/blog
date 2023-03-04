@@ -1,9 +1,25 @@
 ---
 import ContentLayout from "@layouts/ContentLayout.astro";
+import type { MarkdownHeading } from "astro";
+
+type Props = {
+  headings: MarkdownHeading[];
+};
+const { headings } = Astro.props;
 ---
 
 <aside class="hidden w-full lg:flex sticky top-6 right-0 h-fit">
   <div class="flex-1">
-    <ContentLayout>sidebar</ContentLayout>
+    <ContentLayout>
+      <ul class="flex flex-col">
+        {
+          headings.map((heading) => (
+            <li>
+              <a href={`#${heading.slug}`}>{heading.text}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </ContentLayout>
   </div>
 </aside>
