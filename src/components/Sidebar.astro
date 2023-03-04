@@ -23,3 +23,39 @@ const { headings } = Astro.props;
     </ContentLayout>
   </div>
 </aside>
+
+<script>
+  const ACTIVE_CLASS = "text-primary";
+  const headings = document.querySelectorAll("article h2, article h3");
+
+  const options = {
+    root: null,
+    rootMargin: "0px 0px -90% 0px",
+    threshold: 0,
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        activateIndex(entry.target);
+      }
+    });
+  }, options);
+
+  headings.forEach((heading) => {
+    observer.observe(heading);
+  });
+
+  const activateIndex = (element: Element) => {
+    const currentActiveIndex = document.querySelector(`aside .${ACTIVE_CLASS}`);
+
+    if (currentActiveIndex) {
+      currentActiveIndex.classList.remove(ACTIVE_CLASS);
+    }
+
+    const newActiveIndex = document.querySelector(`a[href='#${element.id}']`);
+    if (newActiveIndex) {
+      newActiveIndex.classList.add(ACTIVE_CLASS);
+    }
+  };
+</script>
