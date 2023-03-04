@@ -7,7 +7,7 @@ const { href, ...props } = Astro.props;
 const { pathname } = Astro.url;
 const isActive = href === pathname || href === pathname.replace(/\/$/, "");
 
-const normalStyle = "p-4 hover:opacity-70 transition-opacity";
+const normalStyle = "p-4 hover:opacity-70 transition-opacity flex";
 const activeStyle = "underline" + " " + normalStyle;
 const style = isActive ? activeStyle : normalStyle;
 ---

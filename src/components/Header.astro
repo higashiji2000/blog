@@ -14,10 +14,10 @@ const { id } = Astro.props;
   <div
     class="rounded-none lg:rounded-2xl px-8 lg:px-6 bg-opacity-80 lg:bg-white bg-base-100 backdrop-blur-sm lg:drop-shadow-none"
   >
-    <div class="flex items-center justify-between py-2 lg:py-6">
+    <div class="flex items-center justify-between py-2">
       <Logo />
       <nav class="flex items-center">
-        <ul class="hidden lg:flex">
+        <ul class="hidden lg:flex items-center">
           <HeaderContents />
         </ul>
         <label class="btn btn-ghost lg:hidden" for={id}>
