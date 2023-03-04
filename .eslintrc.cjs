@@ -6,12 +6,14 @@ module.exports = {
   },
   plugins: ["unused-imports"],
   extends: ["plugin:astro/recommended", "standard-with-typescript", "prettier"],
+  parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaVersion: "latest",
     sourceType: "module",
     project: "./tsconfig.json",
     extraFileExtensions: [".astro"],
   },
+  ignorePatterns: ["*.cjs"],
   rules: {
     "no-unused-vars": "off",
     "unused-imports/no-unused-imports": "error",
