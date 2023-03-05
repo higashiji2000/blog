@@ -13,11 +13,35 @@ const { headings } = Astro.props;
     <ContentLayout>
       <ul class="flex flex-col">
         {
-          headings.map((heading) => (
-            <li>
-              <a href={`#${heading.slug}`}>{heading.text}</a>
-            </li>
-          ))
+          headings.map((heading) => {
+            if (heading.depth >= 4) {
+              return null;
+            }
+
+            if (heading.depth === 3) {
+              return (
+                <li class="h-fit flex">
+                  <a
+                    class={`flex-1 leading-relaxed text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50 border-l-2 pl-4 before:content-['-']`}
+                    href={`#${heading.slug}`}
+                  >
+                    {heading.text}
+                  </a>
+                </li>
+              );
+            }
+
+            return (
+              <li class="h-fit flex">
+                <a
+                  class={`flex-1 leading-relaxed text-neutral-500 hover:text-neutral-900 hover:bg-neutral-50 border-l-2 pl-3`}
+                  href={`#${heading.slug}`}
+                >
+                  {heading.text}
+                </a>
+              </li>
+            );
+          })
         }
       </ul>
     </ContentLayout>
@@ -25,12 +49,12 @@ const { headings } = Astro.props;
 </aside>
 
 <script>
-  const ACTIVE_CLASS = "text-primary";
+  const ACTIVE_CLASS = "border-primary";
   const headings = document.querySelectorAll("article h2, article h3");
 
   const options = {
     root: null,
-    rootMargin: "0px 0px -90% 0px",
+    rootMargin: "0px 0px -80% 0px",
     threshold: 0,
   };
 
