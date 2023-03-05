@@ -1,6 +1,9 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import Tag from "./Tag.astro";
+import PublishDateIcon from "./icons/PublishDateIcon.astro";
+import UpdateIcon from "./icons/UpdateIcon.astro";
+import FormattedDate from "./FormattedDate.astro";
 
 type Props = {
   frontmatter: CollectionEntry<"blog">["data"];
@@ -21,9 +24,22 @@ const { frontmatter, url } = Astro.props;
       class="flex flex-col gap-1 flex-1 group-hover:opacity-70 transition duration-200"
     >
       <h2 class="font-bold text-lg">{frontmatter.title}</h2>
-      <time class="text-sm text-neutral-500"
-        >{frontmatter.pubDate.toLocaleDateString()}</time
-      >
+      <div class="flex text-neutral-500 gap-2">
+        <PublishDateIcon />
+        <time class="text-sm"
+          ><FormattedDate date={frontmatter.pubDate} />
+        </time>
+        {
+          frontmatter.updatedDate && (
+            <>
+              <UpdateIcon />
+              <time class="text-sm">
+                <FormattedDate date={frontmatter.updatedDate} />
+              </time>
+            </>
+          )
+        }
+      </div>
       <ul class="flex gap-2">
         {frontmatter.tags.map((tag) => <Tag name={tag} />)}
       </ul>
