@@ -17,12 +17,8 @@ const schema = z.object({
   tags: z.array(z.string()),
 });
 
-const blog = defineCollection({
+const posts = defineCollection({
   schema,
 });
 
-const note = defineCollection({
-  schema,
-});
-
-export const collections = { blog, note };
+export const collections = { posts };

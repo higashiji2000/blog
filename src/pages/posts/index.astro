@@ -11,7 +11,7 @@ import Card from "@components/Card.astro";
 import HorizontalRule from "@components/HorizontalRule.astro";
 import Title from "@components/Title.astro";
 
-const posts = (await getCollection("blog")).sort(
+const posts = (await getCollection("posts")).sort(
   (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
 );
 ---
@@ -19,14 +19,14 @@ const posts = (await getCollection("blog")).sort(
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
   <ContentLayout>
     <div class="grid gap-4">
-      <Title title="tech" />
+      <Title title="posts" />
       <ul class="grid gap-4">
         {
           posts.map((post) => (
             <>
               <HorizontalRule />
               <li>
-                <Card frontmatter={post.data} url={`blog/${post.slug}`} />
+                <Card frontmatter={post.data} url={`posts/${post.slug}`} />
               </li>
             </>
           ))

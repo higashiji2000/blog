@@ -6,7 +6,7 @@ import UpdateIcon from "./icons/UpdateIcon.astro";
 import FormattedDate from "./FormattedDate.astro";
 
 type Props = {
-  frontmatter: CollectionEntry<"blog">["data"];
+  frontmatter: CollectionEntry<"posts">["data"];
   url: string;
 };
 const { frontmatter, url } = Astro.props;
