@@ -3,7 +3,7 @@ type Props = {
   disablePaddingY?: boolean;
 };
 const { disablePaddingY } = Astro.props;
-const commonClasses = "rounded-2xl bg-white";
+const commonClasses = "rounded-2xl bg-white shadow";
 const paddingClass = disablePaddingY ? "px-6" : "p-6";
 const classes = commonClasses + " " + paddingClass;
 ---
