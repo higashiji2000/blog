@@ -7,6 +7,8 @@ import ContentLayout from "./ContentLayout.astro";
 import type { MarkdownHeading } from "astro";
 import Title from "@components/Title.astro";
 import Tag from "@components/Tag.astro";
+import PublishDateIcon from "@components/icons/PublishDateIcon.astro";
+import UpdateIcon from "@components/icons/UpdateIcon.astro";
 
 type Props = CollectionEntry<"blog">["data"] & {
   headings: MarkdownHeading[];
@@ -30,24 +32,34 @@ const { title, description, pubDate, updatedDate, heroImage, headings, tags } =
     }
     <div class="col-span-2">
       <ContentLayout>
-        <section class="grid gap-4">
+        <div class="grid gap-3">
           <Title title={title} />
           <ul class="flex gap-4 text-neutral-500">
-            <li>
-              公開：<FormattedDate date={pubDate} />
+            <li class="text-sm flex gap-1">
+              <PublishDateIcon /><span>公開:</span><FormattedDate
+                date={pubDate}
+              />
             </li>
             {
               updatedDate && (
-                <li>
-                  更新： <FormattedDate date={updatedDate} />
+                <li class="text-sm flex gap-1">
+                  <UpdateIcon />
+                  <span>更新:</span>
+                  <FormattedDate date={updatedDate} />
                 </li>
               )
             }
           </ul>
-          <ul class="flex gap-4">
-            {tags.map((tag) => <Tag name={tag} />)}
-          </ul>
-        </section>
+          {
+            tags.length ? (
+              <ul class="flex gap-4">
+                {tags.map((tag) => (
+                  <Tag name={tag} />
+                ))}
+              </ul>
+            ) : null
+          }
+        </div>
         <hr class="my-6" />
         <div class="prose max-w-full">
           <slot />
