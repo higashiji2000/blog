@@ -1,9 +1,10 @@
-// Place any global data in this file.
-// You can import this data from anywhere in your site by using the `import` keyword.
-
 export const SITE_TITLE = "bunibuni";
 export const SITE_DESCRIPTION = "技術メモ・雑記";
+export const MY_NAME = "higashiji";
 export const HTML_ID = "root";
 export const LIGHT_THEME = "lofi";
 export const DARK_THEME = "myTheme";
 export const TAILWIND_LG = 1024;
+export const TWITTER_URL = "https://twitter.com/higashiji2000";
+export const TWITTER_SUB_URL = "https://twitter.com/konnnitha";
+export const GITHUB_URL = "https://github.com/higashiji2000";

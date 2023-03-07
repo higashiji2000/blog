@@ -1,9 +1,9 @@
 ---
-import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import { SITE_TITLE } from "../consts";
 import BaseLayout from "@layouts/BaseLayout.astro";
 ---
 
-<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+<BaseLayout>
   <div class="flex-1 grid place-content-center">
     <div id="goodbyeWrapper" class="w-fit select-none transition">
       <div id="wrapper" class="w-fit transition">
@@ -18,7 +18,6 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 <script>
   import { TAILWIND_LG } from "src/consts";
 
-  import { unreachable } from "src/utils/unreachable";
   const title = document.querySelector("h1");
   const wrapper = document.getElementById("wrapper");
 

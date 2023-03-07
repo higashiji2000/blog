@@ -1,0 +1,24 @@
+---
+type ListItem = {
+  title: string;
+  description: string;
+};
+
+type Props = {
+  items: ListItem[];
+};
+export type { Props as ListProps };
+
+const { items } = Astro.props;
+---
+
+<dl class="grid grid-cols-5 gap-2">
+  {
+    items.map((item) => (
+      <>
+        <dt class="font-bold col-span-1 flex justify-between">{item.title}</dt>
+        <dd class="col-span-4">{item.description}</dd>
+      </>
+    ))
+  }
+</dl>

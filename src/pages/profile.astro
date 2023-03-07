@@ -1,0 +1,66 @@
+---
+import HorizontalRule from "@components/HorizontalRule.astro";
+import LinkIcon from "@components/icons/LinkIcon.astro";
+import Link from "@components/Link.astro";
+import type { ListProps } from "@components/List.astro";
+import List from "@components/List.astro";
+import Title from "@components/Title.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import ContentLayout from "@layouts/ContentLayout.astro";
+import { GITHUB_URL, MY_NAME, TWITTER_SUB_URL, TWITTER_URL } from "src/consts";
+
+const listItems: ListProps["items"] = [
+  {
+    title: "使ったことある",
+    description: "React Typescript Astro Sass",
+  },
+  {
+    title: "触ったことある",
+    description: "WordPress Next.js firebase",
+  },
+  {
+    title: "興味ある",
+    description: "Next.js Node.js Three.js",
+  },
+];
+---
+
+<BaseLayout title="profile">
+  <ContentLayout>
+    <div class="flex flex-col gap-4">
+      <div class="flex flex-col gap-2">
+        <Title title="Profile" />
+        <hr />
+      </div>
+      <div class="flex gap-12 items-start w-full mx-auto">
+        <div class="avatar">
+          <div class="w-24 rounded-2xl">
+            <img src="/common/profile.png" />
+          </div>
+        </div>
+        <div class="flex flex-col gap-2 flex-1">
+          <div>
+            <h2 class="text-xl font-bold">{MY_NAME}</h2>
+            <p class="text-sm text-neutral-500">@higashiji2000</p>
+          </div>
+          <HorizontalRule />
+          <div class="flex flex-col gap-2">
+            <p>
+              web・フロントエンド・コスモ星丸が好き<br />
+              <Link href="https://twitter.com/PlayGround_Log">
+                Playground
+              </Link>所属
+            </p>
+            <div class="flex gap-2">
+              <LinkIcon />
+              <Link target="_blank" href={TWITTER_URL}>Twitter</Link>
+              <Link target="_blank" href={TWITTER_SUB_URL}>Twitter(私的)</Link>
+              <Link target="_blank" href={GITHUB_URL}>Github</Link>
+            </div>
+            <List items={listItems} />
+          </div>
+        </div>
+      </div>
+    </div>
+  </ContentLayout>
+</BaseLayout>

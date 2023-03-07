@@ -16,10 +16,10 @@ const posts = (await getCollection("posts")).sort(
 );
 ---
 
-<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+<BaseLayout title="記事一覧">
   <ContentLayout>
-    <div class="grid gap-4">
-      <Title title="posts" />
+    <div class="grid gap-2">
+      <Title title="Posts" />
       <ul class="grid gap-4">
         {
           posts.map((post) => (
