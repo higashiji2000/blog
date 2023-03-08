@@ -23,6 +23,9 @@ module.exports = {
         vibrationFast: "vibration .1s infinite",
         goodbye: "2s ease-in 2s forwards goodbye",
       },
+      zIndex: {
+        header: 100,
+      },
     },
   },
   plugins: [require("@tailwindcss/typography"), require("daisyui")],
