@@ -26,6 +26,9 @@ module.exports = {
       zIndex: {
         header: 100,
       },
+      flex: {
+        2: "2 2 0%",
+      },
     },
   },
   plugins: [require("@tailwindcss/typography"), require("daisyui")],

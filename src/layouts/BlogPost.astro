@@ -20,17 +20,9 @@ const { title, description, pubDate, updatedDate, heroImage, headings, tags } =
 
 <BaseLayout title={title} description={description}>
   <article
-    class="w-full max-w-full grid gap-y-8 lg:gap-x-8 gap-x-0 grid-cols-1 lg:grid-cols-3"
+    class="w-full flex flex-col-reverse lg:flex-row gap-y-8 lg:gap-x-8 gap-x-0 grid-cols-1 lg:grid-cols-3"
   >
-    {
-      heroImage && (
-        <img
-          class="object-cover w-full rounded-2xl max-h-80 col-span-3 m-0 shadow"
-          src={heroImage}
-        />
-      )
-    }
-    <div class="col-span-2">
+    <div class="flex-2">
       <ContentLayout>
         <div class="grid gap-3">
           <Title title={title} />
@@ -66,6 +58,16 @@ const { title, description, pubDate, updatedDate, heroImage, headings, tags } =
         </div>
       </ContentLayout>
     </div>
-    <Sidebar headings={headings} />
+    <div class="flex-1 flex flex-col gap-4">
+      {
+        heroImage && (
+          <img
+            class="object-cover  aspect-video rounded-2xl m-0 shadow"
+            src={heroImage}
+          />
+        )
+      }
+      <Sidebar headings={headings} />
+    </div>
   </article>
 </BaseLayout>

@@ -14,9 +14,11 @@ const { frontmatter, url } = Astro.props;
 
 <article class="group">
   <a class="flex items-center gap-8" href={url}>
-    <figure class="rounded-2xl w-44 hidden lg:block overflow-hidden">
+    <figure
+      class="rounded-2xl w-44 aspect-video hidden lg:block overflow-hidden"
+    >
       <img
-        class="group-hover:scale-110 transition duration-200 grayscale group-hover:grayscale-0"
+        class="group-hover:scale-110 transition object-cover h-full w-full duration-200 grayscale group-hover:grayscale-0"
         src={frontmatter.heroImage}
       />
     </figure>
