@@ -1,1 +1,1 @@
-bunibuni.dev
+https://www.bunibuni.boo/
