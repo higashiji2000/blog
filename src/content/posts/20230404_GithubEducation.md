@@ -24,12 +24,12 @@ Github Education の申請のためには、学生であることを証明する
 
 ## 試したこと
 
-![figma](/public/posts/20230404/figma.png)
+![figma](/posts/20230404/figma.png)
 写真を 2 枚撮影し、figma 上で縦に並べて一枚の画像ファイルとして export しました。  
 画像ファイルのサイズには制限があるので、export の画質にも注意しましょう。
 意気揚々と submit してみると...
 
-![rejected](/public/posts/20230404/rejected.png)
+![rejected](/posts/20230404/rejected.png)
 却下されてしまいました。
 
 > おい higashiji、  
@@ -55,7 +55,7 @@ Github Education の申請のためには、学生であることを証明する
 アップロードされた画像は信頼性が低いとのこと。  
 他の解決策は画像の加工やプロフィールの編集が伴いめんどくさいので、とりあえず<u>PC の内カメラでその場で撮影</u>してみます。
 
-![success](/public/posts/20230404/success.png)
+![success](/posts/20230404/success.png)
 
 あっさり成功しました。今回も submit から数秒でメールが届いたので、現状人力でのチェックはしていないようです。
 
