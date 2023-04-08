@@ -1,12 +1,20 @@
 ---
 import type { HTMLAttributes } from "astro/types";
+import OpenInNewIcon from "./icons/OpenInNewIcon.astro";
 
 type Props = {
   href: string;
+  newTab?: boolean;
 } & HTMLAttributes<"a">;
-const { href, ...rest } = Astro.props;
+const { href, newTab, ...rest } = Astro.props;
 ---
 
-<a href={href} class="text-primary hover:underline" {...rest}>
+<a
+  href={href}
+  class="inline-flex gap-1 text-primary hover:underline"
+  target={newTab ? "_blank" : "_self"}
+  {...rest}
+>
   <slot />
+  {newTab && <OpenInNewIcon />}
 </a>
