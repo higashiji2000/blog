@@ -1,0 +1,37 @@
+---
+import HorizontalRule from "@components/HorizontalRule.astro";
+import Link from "@components/Link.astro";
+import Title from "@components/Title.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import ContentLayout from "@layouts/ContentLayout.astro";
+---
+
+<BaseLayout>
+  <ContentLayout>
+    <div class="grid gap-4">
+      <div class="grid gap-2">
+        <Title title="プライバシーポリシー" />
+        <HorizontalRule />
+      </div>
+      <p>
+        当サイトでは、Googleによるアクセス解析ツール「Googleアナリティクス」を使用しています。<br
+        />
+        このGoogleアナリティクスはデータの収集のためにCookieを使用しています。このデータは匿名で収集されており、個人を特定するものではありません。<br
+        />
+        この機能はCookieを無効にすることで収集を拒否することが出来ますので、お使いのブラウザの設定をご確認ください。<br
+        />
+        この規約に関しての詳細は <Link
+          newTab
+          href="https://marketingplatform.google.com/about/analytics/terms/jp/"
+        >
+          Googleアナリティクスサービス利用規約のページ
+        </Link> や <Link
+          href="https://policies.google.com/technologies/ads?hl=ja"
+          newTab
+        >
+          Googleポリシーと規約ページ
+        </Link> をご覧ください。
+      </p>
+    </div>
+  </ContentLayout>
+</BaseLayout>
