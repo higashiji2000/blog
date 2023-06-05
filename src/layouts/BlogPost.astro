@@ -9,6 +9,7 @@ import Title from "@components/Title.astro";
 import Tag from "@components/Tag.astro";
 import PublishDateIcon from "@components/icons/PublishDateIcon.astro";
 import UpdateIcon from "@components/icons/UpdateIcon.astro";
+import { TWITTER_URL } from "src/consts";
 
 type Props = CollectionEntry<"posts">["data"] & {
   headings: MarkdownHeading[];
@@ -55,6 +56,10 @@ const { title, description, pubDate, updatedDate, heroImage, headings, tags } =
         <hr class="my-6" />
         <div class="prose max-w-full">
           <slot />
+          <br />
+          お気づきの点があれば、
+          <a target="_blank" href={TWITTER_URL}> twitter</a>
+          のDMでご連絡ください。
         </div>
       </ContentLayout>
     </div>
