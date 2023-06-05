@@ -1,0 +1,91 @@
+---
+title: "makefile: *** target pattern contains no `%'. Stop. を解決する"
+description: make を使って docker-compose コマンドを実行しようとしたときにちょっとはまった VSCode ユーザーの初心者は要注意
+pubDate: 2023/6/5
+heroImage: "/posts/20230605/make.jpeg"
+tags: ["dev"]
+---
+
+make を使って docker-compose コマンドを実行しようとしたときにちょっとはまったので記事にします。  
+特に、筆者のような VSCode ユーザーは初見でつまづきやすいポイントかと思います。
+
+## 結論
+
+- tab ではなく space でインデントを行っていたのが原因
+- VSCode の設定を変更する必要がある
+
+## Makefile
+
+```makefile
+migration-create:
+	docker container exec -it todos_backend sh -c "npm run typeorm:migration:create $(name)"
+
+migration-generate:
+	docker container exec -it todos_backend sh -c "npm run typeorm:migration:generate $(name)"
+
+migration-run:
+	docker container exec -it todos_backend sh -c "npm run typeorm:migration:run"
+
+migration-revert:
+	docker container exec -it todos_backend sh -c "npm run typeorm:migration:revert"
+
+schema-drop:
+	docker container exec -it todos_backend sh -c "npm run typeorm:schema　:drop"
+
+schema-sync:
+	docker container exec -it todos_backend sh -c "npm run typeorm:schema:drop && npm run typeorm:migration:run && npm run typeorm:seed:run"
+```
+
+今回触っていた Makefile です。内容は以下のすばらしいハンズオンより。  
+[Nest.js+MySQL で動く CRUD+認証 API サーバを Docker+VSCode+Swagger で構築してみる](https://qiita.com/shzawa/items/be0fafb92824a6e9cf26)
+
+## エラー内容について
+
+```
+% make migration-generate name=CreateBaseTables
+makefile:2: *** target pattern contains no `%'.  Stop.
+```
+
+target に`%`が含まれていないよ、という旨のエラーメッセージですが、ここでは直接的には関係ありません。
+
+問題は、**2 行目のインデントが、tab ではなく space で行われている**点です。  
+VSCode では、デフォルトで tab を space 4 つに変換されるので、たとえ tab キーを押したとしても、space に変換されてしまいます。
+
+VSCode の settings で`editor.renderWhitespace` を有効化していると、tab と space が可視化されるので気づきやすくなります。
+
+<div class="flex-col md:flex-row flex">
+  <div class="flex-1">
+    ![space](/posts/20230605/space.png)
+    ↑ space
+  </div>
+  <div class="flex-1">![tab](/posts/20230605/tab.png) ↑ tab</div>
+
+</div>
+
+## 解決方法
+
+VSCode の Language Specific Settings を使います。  
+VSCode の settings.json を開き、以下の内容を追記します。
+
+```json
+{
+  "[makefile]": {
+    "editor.insertSpaces": false,
+    "editor.detectIndentation": false
+  }
+}
+```
+
+`insertSpaces` は、tab キーを押したときに space が入力される設定。
+
+`detectIndentation`は、ファイルごとに既存のコードのインデントを検出し、それに合わせて space/tab の切り替えやインデントの大きさの調整を行ってくれる設定。
+
+makefile ではこれらの設定を off にすることで、tab キーを押したときにちゃんと tab が入力されるようになります。
+
+## 参考記事
+
+- [GNU make](https://www.gnu.org/software/make/manual/make.html#Recipe-Syntax)
+- [Why does Visual Studio Code insert spaces when editing a Makefile and "editor.insertSpaces": "auto"?](https://stackoverflow.com/questions/34937092/why-does-visual-studio-code-insert-spaces-when-editing-a-makefile-and-editor-in)
+- [Visual Studio Code User and Workspace Settings - Language specific editor settings](https://code.visualstudio.com/docs/getstarted/settings#_language-specific-editor-settings)
+- [VSCode の Detect Indentation が、よくわからないので、調査してみた](https://creating-homepage.com/archives/8667)
+- [VSCode | タブキーを押したときにスペースに変換するのかに関する設定](https://www.javadrive.jp/vscode/setting/index9.html)
