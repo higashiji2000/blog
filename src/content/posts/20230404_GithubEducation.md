@@ -3,7 +3,7 @@ title: Github Educationの申請が却下されて困った
 description: copilotを使うためにGithub Educationの申請を行いました。学生証のアップロードがrejectされて困った。
 pubDate: 2023/4/4
 heroImage: "/posts/20230404/GithubEducation.png"
-tags: ["dev", "astro"]
+tags: ["dev"]
 ---
 
 Github Copilot を使ってみたくなったので Github Education に申し込みました。  
