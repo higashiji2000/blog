@@ -2,6 +2,7 @@
 title: "makefile: *** target pattern contains no `%'. Stop. を解決する"
 description: make を使って docker-compose コマンドを実行しようとしたときにちょっとはまった VSCode ユーザーの初心者は要注意
 pubDate: 2023/6/5
+updatedDate: 2023/7/2
 heroImage: "/posts/20230605/make.jpeg"
 tags: ["dev"]
 ---
@@ -49,18 +50,7 @@ makefile:2: *** target pattern contains no `%'.  Stop.
 target に`%`が含まれていないよ、という旨のエラーメッセージですが、ここでは直接的には関係ありません。
 
 問題は、**2 行目のインデントが、tab ではなく space で行われている**点です。  
-VSCode では、デフォルトで tab を space 4 つに変換されるので、たとえ tab キーを押したとしても、space に変換されてしまいます。
-
-VSCode の settings で`editor.renderWhitespace` を有効化していると、tab と space が可視化されるので気づきやすくなります。
-
-<div class="flex-col md:flex-row flex">
-  <div class="flex-1">
-    ![space](/posts/20230605/space.png)
-    ↑ space
-  </div>
-  <div class="flex-1">![tab](/posts/20230605/tab.png) ↑ tab</div>
-
-</div>
+VSCode では、デフォルトで tab が space に変換される設定になっており、Tab キーを押したとしても実際に入力されるのは space です。
 
 ## 解決方法
 
@@ -81,6 +71,19 @@ VSCode の settings.json を開き、以下の内容を追記します。
 `detectIndentation`は、ファイルごとに既存のコードのインデントを検出し、それに合わせて space/tab の切り替えやインデントの大きさの調整を行ってくれる設定。
 
 makefile ではこれらの設定を off にすることで、tab キーを押したときにちゃんと tab が入力されるようになります。
+
+## 余談
+
+VSCode の settings で`editor.renderWhitespace` を有効化していると、tab と space が可視化されるので気づきやすくなります。
+
+<div class="flex-col md:flex-row flex">
+  <div class="flex-1">
+    ![space](/posts/20230605/space.png)
+    ↑ space
+  </div>
+  <div class="flex-1">![tab](/posts/20230605/tab.png) ↑ tab</div>
+
+</div>
 
 ## 参考記事
 
